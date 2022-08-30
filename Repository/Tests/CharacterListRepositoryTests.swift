@@ -8,16 +8,6 @@
 import XCTest
 @testable import Repository
 
-import Networking
-
-struct NetworkLayerAdapterMock: NetworkLayerAdapterProtocol {
-    let expectedResult: Result<Data, NetworkLayerAdapterError>
-
-    func execute(url: String, method: NetworkLayerHttpMethod) async -> NetworkExecutionResult {
-        return expectedResult
-    }
-}
-
 final class CharacterListRepositoryTests: XCTestCase {
     
     // MARK: - Subject under test
@@ -61,7 +51,7 @@ final class CharacterListRepositoryTests: XCTestCase {
 
     func test_fetchCharacters_withInvalidDataResponse_shouldReturnExpectedError() async {
         // Arrange
-        let expectedData = "{}".data(using: .utf8)!
+        let expectedData = "".data(using: .utf8)!
         let expectedError: CharacterListRepositoryError = .unableToSerializeData
 
         sut = CharacterListRepository(

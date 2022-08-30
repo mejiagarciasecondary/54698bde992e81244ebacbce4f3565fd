@@ -71,4 +71,19 @@ final class NetworkLayerAdapterTests: XCTestCase {
                 XCTFail("This test is meant to succeed.")
         }
     }
+
+    func test_createURL_withApiKey_shouldCreateExpectedQueryParams() async {
+        // Arrange
+        let mockApiKey = "2123345634745723"
+        let mockUrl = URL(string: "https://google.com")!
+
+        // Act
+        NetworkLayerAdapter.configure(apiKey: mockApiKey)
+        let url = sut?.getUrlWithQueryParameters(url: mockUrl)
+
+        // Assert
+        XCTAssertTrue(url?.query?.contains("apiKey") == true)
+        XCTAssertTrue(url?.query?.contains("apiKey") == true)
+        XCTAssertTrue(url?.query?.contains("apiKey=2123345634745723") == true)
+    }
 }

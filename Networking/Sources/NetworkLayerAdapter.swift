@@ -7,16 +7,21 @@
 
 import Foundation
 
-open class NetworkLayerAdapter: NetworkLayerAdapterProtocol {
+open class NetworkLayerAdapter {
 
     // MARK: - Dependencies
 
     private let urlSession: URLSession
     private let cachePolicy: URLRequest.CachePolicy
     private let timeoutInterval: TimeInterval
-    private lazy var networkOperationsQueue = DispatchQueue(
-        label: "Networking"
-    )
+    private static var apiKey: String?
+
+    // MARK: - Constants
+    private enum Constants: String {
+        case contentType = "Content-Type"
+        case applicationJson = "application/json; charset=utf-8"
+        case apiKey
+    }
 
     // MARK: - Class life cycle
 
@@ -30,7 +35,61 @@ open class NetworkLayerAdapter: NetworkLayerAdapterProtocol {
         self.timeoutInterval = timeoutInterval
     }
 
-    // MARK: - NetworkLayerAdapterProtocol
+    // MARK: - Internal Methods
+
+    func getUrlWithQueryParameters(
+        url: URL
+    ) -> URL {
+        var components = URLComponents(
+            url: url,
+            resolvingAgainstBaseURL: true
+        )
+
+        components?.queryItems = []
+        components?.queryItems?.append(
+            URLQueryItem(
+                name: Constants.apiKey.rawValue,
+                value: NetworkLayerAdapter.apiKey
+            )
+        )
+
+        return components?.url ?? url
+    }
+
+    // MARK: - Private Methods
+
+    private func createURLRequest(
+        using url: URL,
+        method: NetworkLayerHttpMethod
+    ) -> URLRequest {
+        var request = URLRequest(
+            url: getUrlWithQueryParameters(url: url),
+            cachePolicy: cachePolicy,
+            timeoutInterval: timeoutInterval
+        )
+        request.httpMethod = method.rawValue.uppercased()
+        request.allHTTPHeaderFields = [
+            Constants.contentType.rawValue: Constants.applicationJson.rawValue,
+        ]
+
+        return request
+    }
+
+    // MARK: - Static methods
+
+    public static func configure(apiKey: String) {
+        if NetworkLayerAdapter.apiKey != nil {
+            print("Error: the key has already been configured.")
+            return
+        }
+
+        NetworkLayerAdapter.apiKey = apiKey
+    }
+}
+
+// MARK: - NetworkLayerAdapterProtocol
+
+extension NetworkLayerAdapter: NetworkLayerAdapterProtocol {
 
     public func execute(
         url: String,
@@ -41,12 +100,10 @@ open class NetworkLayerAdapter: NetworkLayerAdapterProtocol {
             return .failure(.invalidUrl)
         }
 
-        var request = URLRequest(
-            url: url,
-            cachePolicy: cachePolicy,
-            timeoutInterval: timeoutInterval
+        let request = createURLRequest(
+            using: url,
+            method: method
         )
-        request.httpMethod = method.rawValue.uppercased()
 
         do {
             let (data, response) = try await URLSession.shared.data(from: request)
