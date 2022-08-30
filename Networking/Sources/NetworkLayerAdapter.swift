@@ -34,8 +34,7 @@ open class NetworkLayerAdapter: NetworkLayerAdapterProtocol {
 
     public func execute(
         url: String,
-        method: NetworkLayerHttpMethod,
-        body: Data?
+        method: NetworkLayerHttpMethod
     ) async -> NetworkExecutionResult {
 
         guard let url = URL(string: url) else {
@@ -48,7 +47,6 @@ open class NetworkLayerAdapter: NetworkLayerAdapterProtocol {
             timeoutInterval: timeoutInterval
         )
         request.httpMethod = method.rawValue.uppercased()
-        request.httpBody = body
 
         do {
             let (data, response) = try await URLSession.shared.data(from: request)

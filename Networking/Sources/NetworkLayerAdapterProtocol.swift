@@ -14,8 +14,7 @@ public typealias NetworkExecutionResult = Result<Data, NetworkLayerAdapterError>
 public protocol NetworkLayerAdapterProtocol {
     func execute(
         url: String,
-        method: NetworkLayerHttpMethod,
-        body: Data?
+        method: NetworkLayerHttpMethod
     ) async -> NetworkExecutionResult
 }
 

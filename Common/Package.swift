@@ -11,6 +11,7 @@ let package = Package(
     products: [
         .library(
             name: "Common",
+            type: .static,
             targets: ["Common"]
         ),
     ],
