@@ -30,4 +30,11 @@ public enum NetworkLayerAdapterError: AppError {
                 return source?.localizedDescription ?? .init()
         }
     }
+
+    public static func == (
+        lhs: NetworkLayerAdapterError,
+        rhs: NetworkLayerAdapterError
+    ) -> Bool {
+        String(describing: lhs) == String(describing: rhs)
+    }
 }

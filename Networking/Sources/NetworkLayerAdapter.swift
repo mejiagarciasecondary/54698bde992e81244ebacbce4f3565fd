@@ -32,11 +32,11 @@ open class NetworkLayerAdapter: NetworkLayerAdapterProtocol {
 
     // MARK: - NetworkLayerAdapterProtocol
 
-    public func execute<ExpectedResult: Decodable>(
+    public func execute(
         url: String,
         method: NetworkLayerHttpMethod,
         body: Data?
-    ) async -> NetworkExecutionResult<ExpectedResult> {
+    ) async -> NetworkExecutionResult {
 
         guard let url = URL(string: url) else {
             return .failure(.invalidUrl)
@@ -62,9 +62,7 @@ open class NetworkLayerAdapter: NetworkLayerAdapterProtocol {
                 return .failure(.invalidStatusCodeReceived(statusCode: receivedStatusCode))
             }
 
-            let serializedData = try JSONDecoder().decode(ExpectedResult.self, from: data)
-
-            return .success(serializedData)
+            return .success(data)
 
         } catch let error {
             return .failure(.unknownError(source: error))

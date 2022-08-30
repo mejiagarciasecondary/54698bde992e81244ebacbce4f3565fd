@@ -8,7 +8,7 @@
 import Foundation
 import Language
 
-public protocol AppError: LocalizedError {
+public protocol AppError: LocalizedError, Equatable {
     var description: String { get }
 }
 
