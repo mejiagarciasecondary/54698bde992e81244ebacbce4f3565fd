@@ -28,7 +28,7 @@ final class NetworkLayerAdapterTests: XCTestCase {
 
     // MARK: - Tests
 
-    func test_networkAdapter_withInvalidServerStatusCode_shouldReturnExpectedError() async {
+    func test_executeRequest_withInvalidServerStatusCode_shouldReturnExpectedError() async {
         // Arrange
         let testUrl = "https://run.mocky.io/v3/5be9e998-88fb-4c3f-92db-241fe39d48a0"
         let expectedError: NetworkLayerAdapterError = .invalidStatusCodeReceived(
@@ -38,8 +38,7 @@ final class NetworkLayerAdapterTests: XCTestCase {
         // Act
         let result = await sut?.execute(
             url: testUrl,
-            method: .get,
-            body: nil
+            method: .get
         )
 
         // Assert
@@ -49,18 +48,18 @@ final class NetworkLayerAdapterTests: XCTestCase {
 
             case .failure(let error):
                 XCTAssertEqual(error, expectedError)
+                XCTAssertFalse(error.description.isEmpty)
         }
     }
 
-    func test_networkAdapter_withValidServerContent_shouldReturnData() async {
+    func test_executeRequest_withValidServerContent_shouldReturnData() async {
         // Arrange
         let testUrl = "https://jsonplaceholder.typicode.com/todos/1"
 
         // Act
         let result = await sut?.execute(
             url: testUrl,
-            method: .get,
-            body: nil
+            method: .get
         )
 
         // Assert

@@ -41,8 +41,8 @@ extension CharacterListRepository: CharacterListRepositoryProtocol {
 
         switch result {
             case .success(let data):
-                if let serializedResult: [Character] = getSerializedData(data: data) {
-                    return .success(serializedResult)
+                if let serializedResult: CharacterDataWrapper = getSerializedData(data: data) {
+                    return .success(serializedResult.data?.results ?? [])
                 } else {
                     return .failure(.unableToSerializeData)
                 }
