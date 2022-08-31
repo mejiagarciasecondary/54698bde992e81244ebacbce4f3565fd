@@ -1,0 +1,14 @@
+//
+//  Default.xcconfig
+//  MarvelBank
+//
+//  Created by Luis Carlos Mejia on 30/08/22.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+// IMPORTANT NOTE: These keys should be added by any CI system,
+// although for this test it's fine since I'll use them only for this purpose.
+PUBLIC_KEY=1022b996ce7ceb5455ff9c4f1f13e43a
+PRIVATE_KEY=0adf332350ba316f26a6c6b05183f5827129478c

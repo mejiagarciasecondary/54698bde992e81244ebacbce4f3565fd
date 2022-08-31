@@ -11,6 +11,6 @@ struct CharacterListEndpoints {
     static let characters = Endpoint(
         url: "public/characters",
         version: 1,
-        base: "https://gateway.marvel.com:443"
+        base: "https://gateway.marvel.com"
     )
 }

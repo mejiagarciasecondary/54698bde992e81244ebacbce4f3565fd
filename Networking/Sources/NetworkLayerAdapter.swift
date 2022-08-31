@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Common
 
 open class NetworkLayerAdapter {
 
@@ -14,13 +15,19 @@ open class NetworkLayerAdapter {
     private let urlSession: URLSession
     private let cachePolicy: URLRequest.CachePolicy
     private let timeoutInterval: TimeInterval
-    private static var apiKey: String?
+
+    private struct Credentials {
+        static var publicKey = String()
+        static var privateKey = String()
+    }
 
     // MARK: - Constants
     private enum Constants: String {
         case contentType = "Content-Type"
         case applicationJson = "application/json; charset=utf-8"
-        case apiKey
+        case apiKey = "apikey"
+        case hash
+        case timeStamp = "ts"
     }
 
     // MARK: - Class life cycle
@@ -45,13 +52,22 @@ open class NetworkLayerAdapter {
             resolvingAgainstBaseURL: true
         )
 
-        components?.queryItems = []
-        components?.queryItems?.append(
+        let timeStamp = Date().timeIntervalSince1970
+
+        components?.queryItems = [
+            URLQueryItem(
+                name: Constants.timeStamp.rawValue,
+                value: "\(timeStamp)"
+            ),
             URLQueryItem(
                 name: Constants.apiKey.rawValue,
-                value: NetworkLayerAdapter.apiKey
+                value: NetworkLayerAdapter.Credentials.publicKey
+            ),
+            URLQueryItem(
+                name: Constants.hash.rawValue,
+                value: generateHash(timeStamp: timeStamp)
             )
-        )
+        ]
 
         return components?.url ?? url
     }
@@ -77,13 +93,16 @@ open class NetworkLayerAdapter {
 
     // MARK: - Static methods
 
-    public static func configure(apiKey: String) {
-        if NetworkLayerAdapter.apiKey != nil {
-            print("Error: the key has already been configured.")
-            return
-        }
+    public static func configure(
+        publicKey: String,
+        privateKey: String
+    ) {
+        Credentials.publicKey = publicKey
+        Credentials.privateKey = privateKey
+    }
 
-        NetworkLayerAdapter.apiKey = apiKey
+    private func generateHash(timeStamp: Double) -> String {
+        "\(timeStamp)\(Credentials.privateKey)\(Credentials.publicKey)".md5
     }
 }
 

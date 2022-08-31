@@ -13,6 +13,6 @@ struct Endpoint {
     let base: String
 
     func build() -> String {
-        "\(base)/\(version)/\(url)"
+        "\(base)/v\(version)/\(url)"
     }
 }

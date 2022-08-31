@@ -15,6 +15,16 @@
 		97448F0128BD960D002CCEC0 /* CharacterListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97448EFF28BD960D002CCEC0 /* CharacterListViewController.xib */; };
 		97448F0428BD9621002CCEC0 /* CharacterDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97448F0228BD9621002CCEC0 /* CharacterDetailViewController.swift */; };
 		97448F0528BD9621002CCEC0 /* CharacterDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97448F0328BD9621002CCEC0 /* CharacterDetailViewController.xib */; };
+		9776288C28BE4BB6003CD1ED /* Common in Frameworks */ = {isa = PBXBuildFile; productRef = 9776288B28BE4BB6003CD1ED /* Common */; };
+		9776288E28BE4BBA003CD1ED /* Language in Frameworks */ = {isa = PBXBuildFile; productRef = 9776288D28BE4BBA003CD1ED /* Language */; };
+		9776289028BE4BBA003CD1ED /* Networking in Frameworks */ = {isa = PBXBuildFile; productRef = 9776288F28BE4BBA003CD1ED /* Networking */; };
+		9776289228BE4BBA003CD1ED /* Repository in Frameworks */ = {isa = PBXBuildFile; productRef = 9776289128BE4BBA003CD1ED /* Repository */; };
+		9776289628BE4DBB003CD1ED /* CharacterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9776289428BE4DBB003CD1ED /* CharacterTableViewCell.swift */; };
+		9776289728BE4DBB003CD1ED /* CharacterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9776289528BE4DBB003CD1ED /* CharacterTableViewCell.xib */; };
+		9776289928BE4E56003CD1ED /* CharacterListTableAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9776289828BE4E56003CD1ED /* CharacterListTableAdapter.swift */; };
+		9776289C28BE4E6C003CD1ED /* CharacterCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9776289B28BE4E6C003CD1ED /* CharacterCellViewModel.swift */; };
+		9776289E28BE4F9C003CD1ED /* CharacterListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9776289D28BE4F9C003CD1ED /* CharacterListViewModel.swift */; };
+		97BC399028BEB97C005DE658 /* ApiCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BC398F28BEB964005DE658 /* ApiCredentials.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +49,13 @@
 		97448EFF28BD960D002CCEC0 /* CharacterListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterListViewController.xib; sourceTree = "<group>"; };
 		97448F0228BD9621002CCEC0 /* CharacterDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailViewController.swift; sourceTree = "<group>"; };
 		97448F0328BD9621002CCEC0 /* CharacterDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterDetailViewController.xib; sourceTree = "<group>"; };
+		9776289428BE4DBB003CD1ED /* CharacterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterTableViewCell.swift; sourceTree = "<group>"; };
+		9776289528BE4DBB003CD1ED /* CharacterTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterTableViewCell.xib; sourceTree = "<group>"; };
+		9776289828BE4E56003CD1ED /* CharacterListTableAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListTableAdapter.swift; sourceTree = "<group>"; };
+		9776289B28BE4E6C003CD1ED /* CharacterCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCellViewModel.swift; sourceTree = "<group>"; };
+		9776289D28BE4F9C003CD1ED /* CharacterListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListViewModel.swift; sourceTree = "<group>"; };
+		97BC398E28BEB7AB005DE658 /* Default.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Default.xcconfig; sourceTree = "<group>"; };
+		97BC398F28BEB964005DE658 /* ApiCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiCredentials.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +63,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9776289028BE4BBA003CD1ED /* Networking in Frameworks */,
+				9776288E28BE4BBA003CD1ED /* Language in Frameworks */,
+				9776289228BE4BBA003CD1ED /* Repository in Frameworks */,
+				9776288C28BE4BB6003CD1ED /* Common in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,6 +89,7 @@
 				97448ED428BD9494002CCEC0 /* LaunchScreen.storyboard */,
 				97448EDF28BD9495002CCEC0 /* Tests */,
 				97448EC728BD9492002CCEC0 /* Products */,
+				9776288A28BE4BB6003CD1ED /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -93,6 +115,7 @@
 			children = (
 				97448EFD28BD95FA002CCEC0 /* CharacterDetail */,
 				97448EFC28BD95EF002CCEC0 /* CharacterList */,
+				9776289D28BE4F9C003CD1ED /* CharacterListViewModel.swift */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -102,6 +125,8 @@
 			children = (
 				97448EC928BD9492002CCEC0 /* AppDelegate.swift */,
 				97448ED728BD9494002CCEC0 /* Info.plist */,
+				97BC398E28BEB7AB005DE658 /* Default.xcconfig */,
+				97BC398F28BEB964005DE658 /* ApiCredentials.swift */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -109,8 +134,9 @@
 		97448EFC28BD95EF002CCEC0 /* CharacterList */ = {
 			isa = PBXGroup;
 			children = (
-				97448EFE28BD960D002CCEC0 /* CharacterListViewController.swift */,
-				97448EFF28BD960D002CCEC0 /* CharacterListViewController.xib */,
+				9776289A28BE4E5B003CD1ED /* CharacterCell */,
+				9776289328BE4DA4003CD1ED /* Views */,
+				9776289828BE4E56003CD1ED /* CharacterListTableAdapter.swift */,
 			);
 			path = CharacterList;
 			sourceTree = "<group>";
@@ -122,6 +148,32 @@
 				97448F0328BD9621002CCEC0 /* CharacterDetailViewController.xib */,
 			);
 			path = CharacterDetail;
+			sourceTree = "<group>";
+		};
+		9776288A28BE4BB6003CD1ED /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9776289328BE4DA4003CD1ED /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				97448EFE28BD960D002CCEC0 /* CharacterListViewController.swift */,
+				97448EFF28BD960D002CCEC0 /* CharacterListViewController.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		9776289A28BE4E5B003CD1ED /* CharacterCell */ = {
+			isa = PBXGroup;
+			children = (
+				9776289428BE4DBB003CD1ED /* CharacterTableViewCell.swift */,
+				9776289528BE4DBB003CD1ED /* CharacterTableViewCell.xib */,
+				9776289B28BE4E6C003CD1ED /* CharacterCellViewModel.swift */,
+			);
+			path = CharacterCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,6 +192,12 @@
 			dependencies = (
 			);
 			name = MarvelBank;
+			packageProductDependencies = (
+				9776288B28BE4BB6003CD1ED /* Common */,
+				9776288D28BE4BBA003CD1ED /* Language */,
+				9776288F28BE4BBA003CD1ED /* Networking */,
+				9776289128BE4BBA003CD1ED /* Repository */,
+			);
 			productName = MarvelBank;
 			productReference = 97448EC628BD9492002CCEC0 /* MarvelBank.app */;
 			productType = "com.apple.product-type.application";
@@ -207,6 +265,7 @@
 			files = (
 				97448ED628BD9494002CCEC0 /* LaunchScreen.storyboard in Resources */,
 				97448ED328BD9494002CCEC0 /* Assets.xcassets in Resources */,
+				9776289728BE4DBB003CD1ED /* CharacterTableViewCell.xib in Resources */,
 				97448F0128BD960D002CCEC0 /* CharacterListViewController.xib in Resources */,
 				97448F0528BD9621002CCEC0 /* CharacterDetailViewController.xib in Resources */,
 			);
@@ -226,9 +285,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9776289928BE4E56003CD1ED /* CharacterListTableAdapter.swift in Sources */,
 				97448F0028BD960D002CCEC0 /* CharacterListViewController.swift in Sources */,
 				97448F0428BD9621002CCEC0 /* CharacterDetailViewController.swift in Sources */,
+				9776289E28BE4F9C003CD1ED /* CharacterListViewModel.swift in Sources */,
 				97448ECA28BD9492002CCEC0 /* AppDelegate.swift in Sources */,
+				9776289C28BE4E6C003CD1ED /* CharacterCellViewModel.swift in Sources */,
+				9776289628BE4DBB003CD1ED /* CharacterTableViewCell.swift in Sources */,
+				97BC399028BEB97C005DE658 /* ApiCredentials.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,6 +328,7 @@
 /* Begin XCBuildConfiguration section */
 		97448EEE28BD9495002CCEC0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 97BC398E28BEB7AB005DE658 /* Default.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -324,6 +389,7 @@
 		};
 		97448EEF28BD9495002CCEC0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 97BC398E28BEB7AB005DE658 /* Default.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -501,6 +567,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9776288B28BE4BB6003CD1ED /* Common */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Common;
+		};
+		9776288D28BE4BBA003CD1ED /* Language */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Language;
+		};
+		9776288F28BE4BBA003CD1ED /* Networking */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Networking;
+		};
+		9776289128BE4BBA003CD1ED /* Repository */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Repository;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 97448EBE28BD9492002CCEC0 /* Project object */;
 }
