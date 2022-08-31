@@ -10,10 +10,6 @@ import Repository
 import Networking
 import UIKit
 
-//revisar si faltan test
-//revisar cada archivo buscando errores
-//hacer README
-
 final class AppRouter: BaseRouter<AppRouter.Routes> {
 
     // MARK: - Router properties

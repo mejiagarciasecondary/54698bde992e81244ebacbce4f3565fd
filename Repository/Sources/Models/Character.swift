@@ -1,5 +1,5 @@
 //
-//  Character+Models.swift
+//  Character.swift
 //
 //
 //  Created by Luis Carlos Mejia on 29/08/22.
@@ -37,13 +37,5 @@ public struct Character: Decodable {
     private enum CodingKeys: String, CodingKey {
         case id, name, thumbnail, resourceURI, comics, series
         case characterDescription = "description"
-    }
-}
-
-public struct CharacterCollection: Decodable {
-    public let available: Int
-
-    public init(available: Int) {
-        self.available = available
     }
 }
