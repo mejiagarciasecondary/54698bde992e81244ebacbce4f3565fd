@@ -73,8 +73,10 @@ final class CharacterDetailViewModel {
         model: Character
     ) -> CharacterDetailViewController.Presentation {
         CharacterDetailViewController.Presentation(
-            description: model.characterDescription,
-            imageUrl: model.thumbnail?.fileUrl
+            description: model.characterDescription ?? "--",
+            imageUrl: model.thumbnail?.fileUrl ?? String(),
+            totalSeries: model.series.available,
+            totalComics: model.comics.available
         )
     }
 }

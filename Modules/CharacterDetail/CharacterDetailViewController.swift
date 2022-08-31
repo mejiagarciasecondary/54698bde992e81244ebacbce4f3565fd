@@ -16,13 +16,17 @@ final class CharacterDetailViewController: UIViewController {
     @IBOutlet private weak var mainImageView: UIImageView?
     @IBOutlet private weak var characterNameLabel: UILabel?
     @IBOutlet private weak var characterDescriptionLabel: UILabel?
+    @IBOutlet private weak var totalComicsLabel: UILabel?
+    @IBOutlet private weak var totalSeriesLabel: UILabel?
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView?
 
     // MARK: - Presentation
 
     struct Presentation {
-        let description: String?
-        let imageUrl: String?
+        let description: String
+        let imageUrl: String
+        let totalSeries: Int
+        let totalComics: Int
     }
 
     // MARK: - Dependencies
@@ -80,11 +84,17 @@ final class CharacterDetailViewController: UIViewController {
                         self?.showErrorMessage(message: message)
 
                     case .newDataAvailable(let presentation):
-                        self?.characterDescriptionLabel?.text = presentation.description
-                        self?.mainImageView?.load(url: presentation.imageUrl)
+                        self?.setupPresentation(presentation)
                         self?.activityIndicator?.stopAnimating()
                 }
             }.store(in: &cancellables)
+    }
+
+    private func setupPresentation(_ presentation: Presentation) {
+        characterDescriptionLabel?.text = presentation.description
+        totalComicsLabel?.text = "\(presentation.totalComics)"
+        totalSeriesLabel?.text = "\(presentation.totalSeries)"
+        mainImageView?.load(url: presentation.imageUrl)
     }
 
     private func showErrorMessage(message: String) {
