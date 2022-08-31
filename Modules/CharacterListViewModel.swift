@@ -9,16 +9,6 @@ import Foundation
 import Repository
 import Combine
 
-protocol CharacterListViewModelProtocol: CharacterListTableAdapterDataSource {
-    var statePublisher: Published<CharacterListViewModelState>.Publisher { get }
-
-    func viewDidLoad()
-
-    init(
-        repository: CharacterListRepository
-    )
-}
-
 enum CharacterListViewModelState {
     case idle
     case loading
@@ -26,12 +16,11 @@ enum CharacterListViewModelState {
     case newDataAvailable
 }
 
-final class CharacterListViewModel: CharacterListViewModelProtocol {
+final class CharacterListViewModel: CharacterListTableAdapterDataSource {
 
     // MARK: - Properties
 
-    var statePublisher: Published<CharacterListViewModelState>.Publisher { $state }
-    @Published private var state: CharacterListViewModelState = .idle
+    @Published var state: CharacterListViewModelState = .idle
     private(set) var rows = [CharacterCellViewModel]()
 
     // MARK: - Dependencies
@@ -75,7 +64,11 @@ final class CharacterListViewModel: CharacterListViewModelProtocol {
         _ serverModels: [Character]
     ) -> [CharacterCellViewModel] {
         serverModels.map { item in
-            CharacterCellViewModel(name: item.name)
+            CharacterCellViewModel(
+                id: item.id,
+                name: item.name,
+                imageUrlString: item.thumbnail?.fileUrl
+            )
         }
     }
 }

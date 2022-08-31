@@ -12,25 +12,35 @@ protocol CharacterListTableAdapterDataSource: AnyObject {
     var rows: [CharacterCellViewModel] { get }
 }
 
-final class CharacterListTableAdapter: NSObject, UITableViewDataSource {
+protocol CharacterCellDelegate: AnyObject {
+    func characterCellSelected(viewModel: CharacterCellViewModel)
+}
+
+final class CharacterListTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate {
 
     // MARK: - Properties
 
     private weak var dataSource: CharacterListTableAdapterDataSource?
+    private weak var cellDelegate: CharacterCellDelegate?
     private var tableView: UITableView?
 
     // MARK: - Adapter life cycle
 
     init(
         dataSource: CharacterListTableAdapterDataSource?,
+        cellDelegate: CharacterCellDelegate?,
         tableView: UITableView?
     ) {
         self.dataSource = dataSource
+        self.cellDelegate = cellDelegate
         self.tableView = tableView
 
         super.init()
 
         self.tableView?.dataSource = self
+        self.tableView?.delegate = self
+        self.tableView?.rowHeight = 172
+        self.tableView?.separatorStyle = .none
         self.tableView?.register(
             UINib(
                 nibName: CharacterTableViewCell.identifier,
@@ -66,5 +76,17 @@ final class CharacterListTableAdapter: NSObject, UITableViewDataSource {
         cell.setup(viewModel: viewModel)
 
         return cell
+    }
+
+    func tableView(
+        _ tableView: UITableView,
+        didSelectRowAt indexPath: IndexPath
+    ) {
+        guard dataSource?.rows.indices.contains(indexPath.row) == true,
+              let viewModel = dataSource?.rows[indexPath.row] else {
+            return
+        }
+
+        cellDelegate?.characterCellSelected(viewModel: viewModel)
     }
 }

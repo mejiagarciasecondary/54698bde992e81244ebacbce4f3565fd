@@ -17,20 +17,51 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="172"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bj6-xi-xI1">
-                        <rect key="frame" x="10" y="10" width="300" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Hyy-47-J1R">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="172"/>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="reX-Xq-ekS">
+                        <rect key="frame" x="0.0" y="131" width="320" height="41"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bj6-xi-xI1">
+                                <rect key="frame" x="10" y="10" width="300" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="bj6-xi-xI1" firstAttribute="leading" secondItem="reX-Xq-ekS" secondAttribute="leading" constant="10" id="9eO-xA-Jf7"/>
+                            <constraint firstItem="bj6-xi-xI1" firstAttribute="top" secondItem="reX-Xq-ekS" secondAttribute="top" constant="10" id="eU5-uQ-QmW"/>
+                            <constraint firstAttribute="bottom" secondItem="bj6-xi-xI1" secondAttribute="bottom" constant="10" id="mkx-Pr-ndl"/>
+                            <constraint firstAttribute="trailing" secondItem="bj6-xi-xI1" secondAttribute="trailing" constant="10" id="nQW-2e-9Dk"/>
+                        </constraints>
+                    </view>
+                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="2ng-0R-3CP">
+                        <rect key="frame" x="150" y="76" width="20" height="20"/>
+                    </activityIndicatorView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="bj6-xi-xI1" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="DV2-UX-zfV"/>
-                    <constraint firstItem="bj6-xi-xI1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="PKU-WX-lPj"/>
-                    <constraint firstAttribute="trailing" secondItem="bj6-xi-xI1" secondAttribute="trailing" constant="10" id="UFx-hd-WuA"/>
+                    <constraint firstItem="reX-Xq-ekS" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="E7c-Fu-ARY"/>
+                    <constraint firstAttribute="trailing" secondItem="Hyy-47-J1R" secondAttribute="trailing" id="KIb-Mi-Tas"/>
+                    <constraint firstAttribute="bottom" secondItem="reX-Xq-ekS" secondAttribute="bottom" id="Qll-St-UHS"/>
+                    <constraint firstAttribute="bottom" secondItem="Hyy-47-J1R" secondAttribute="bottom" id="dS1-iE-2x1"/>
+                    <constraint firstItem="Hyy-47-J1R" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="dfO-NM-Res"/>
+                    <constraint firstItem="Hyy-47-J1R" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="mbI-Lu-mFj"/>
+                    <constraint firstItem="2ng-0R-3CP" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="r2N-eA-FgR"/>
+                    <constraint firstAttribute="trailing" secondItem="reX-Xq-ekS" secondAttribute="trailing" id="s1w-i2-ird"/>
+                    <constraint firstItem="2ng-0R-3CP" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="yHv-e6-gS6"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <connections>
+                <outlet property="activityIndicator" destination="2ng-0R-3CP" id="qkI-N4-EBo"/>
+                <outlet property="mainImageView" destination="Hyy-47-J1R" id="k4M-g6-ceO"/>
+                <outlet property="nameLabel" destination="bj6-xi-xI1" id="QxL-wh-vTc"/>
+            </connections>
             <point key="canvasLocation" x="137.68115942028987" y="182.8125"/>
         </tableViewCell>
     </objects>

@@ -18,18 +18,14 @@ final class CharacterListViewController: UIViewController {
 
     // MARK: - Dependencies
 
-    private lazy var tableAdapter = CharacterListTableAdapter(
-        dataSource: viewModel,
-        tableView: tableView
-    )
-
-    private let viewModel: CharacterListViewModelProtocol
+    private var tableAdapter: CharacterListTableAdapter?
+    private let viewModel: CharacterListViewModel
     private var cancellables: Set<AnyCancellable> = []
 
     // MARK: - View controller life cycle
 
     init(
-        viewModel: CharacterListViewModelProtocol
+        viewModel: CharacterListViewModel
     ) {
         self.viewModel = viewModel
 
@@ -46,20 +42,25 @@ final class CharacterListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        viewModel.viewDidLoad()
         subscribeToViewModelState()
+        viewModel.viewDidLoad()
     }
 
     // MARK: - Private Methods
 
     private func setupUI() {
         title = Lang.Views.characterList
-        navigationController?.navigationBar.prefersLargeTitles = true
+
+        tableAdapter = CharacterListTableAdapter(
+            dataSource: viewModel,
+            cellDelegate: self,
+            tableView: tableView
+        )
     }
 
     private func subscribeToViewModelState() {
         viewModel
-            .statePublisher
+            .$state
             .receive(on: RunLoop.main)
             .sink { [weak self] state in
                 switch state {
@@ -74,8 +75,8 @@ final class CharacterListViewController: UIViewController {
                         self?.showErrorMessage(message: message)
 
                     case .newDataAvailable:
-                        self?.activityIndicator?.stopAnimating()
                         self?.tableView?.reloadData()
+                        self?.activityIndicator?.stopAnimating()
                 }
             }.store(in: &cancellables)
     }
@@ -90,5 +91,12 @@ final class CharacterListViewController: UIViewController {
         alertController.addAction(UIAlertAction(title: "Ok", style: .default))
 
         present(alertController, animated: true)
+    }
+}
+
+// MARK: - CharacterCellDelegate
+extension CharacterListViewController: CharacterCellDelegate {
+    func characterCellSelected(viewModel: CharacterCellViewModel) {
+        print(viewModel.id)
     }
 }
