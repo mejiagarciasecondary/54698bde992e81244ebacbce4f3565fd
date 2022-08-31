@@ -1,0 +1,39 @@
+@startuml AppDesign
+
+title "MarvelBank app design - Networking"
+
+package "Repository" {
+
+    class "NetworkLayerAdapterProtocol" as NetworkLayerAdapterProtocol <<(P, GoldenRod), protocol>> {
+        +execute(url: String, method: NetworkLayerHttpMethod) async -> NetworkExecutionResult
+    }
+
+    class "NetworkLayerHttpMethod" as NetworkLayerHttpMethod <<(E, GoldenRod) enum>> {
+        +get
+    }
+
+    class "NetworkLayerAdapter" as NetworkLayerAdapter <<NetworkLayerAdapterProtocol>> { 
+        -networkAdapter: NetworkLayerAdapterProtocol
+        --
+        ~init(urlSession: URLSession, cachePolicy: URLRequest.CachePolicy, timeoutInterval: TimeInterval)
+        --
+        +getUrlWithQueryParameters(url: URL) -> URL
+        +execute(url: String, method: NetworkLayerHttpMethod) async -> NetworkExecutionResult
+        +static configure(publicKey: String, privateKey: String)
+        -generateHash(timeStamp: Double) -> String
+        -createURLRequest(using url: URL, method: NetworkLayerHttpMethod) -> URLRequest
+    }
+
+    class "NetworkLayerAdapterError" as NetworkLayerAdapterError <<(E, IndianRed) enum>> {
+        case invalidUrl
+        case responseNoLegible
+        case invalidStatusCodeReceived(statusCode: Int)
+        case unknownError(source: Error?)
+    }
+
+    NetworkLayerAdapterProtocol-down->NetworkLayerAdapter
+    NetworkLayerAdapter .left.> NetworkLayerAdapterError
+    NetworkLayerAdapter .right.> NetworkLayerHttpMethod
+}
+
+@enduml

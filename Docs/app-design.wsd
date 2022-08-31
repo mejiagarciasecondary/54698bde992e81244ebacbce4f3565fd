@@ -1,0 +1,64 @@
+@startuml AppDesign
+
+title "MarvelBank app design - Repository"
+
+package "Repository" {
+
+    class "BaseRepository" as BaseRepository {
+        +getSerializedData<T>() -> T
+    }
+
+    class "Endpoint" as Endpoint <<(S, GoldenRod) struct>> {
+        +url: String
+        +version: String
+        +base: String
+        --
+        +build -> String()
+    }
+
+    class "CharacterListRepository" as CharacterListRepository <<BaseRepository>> { 
+        -networkAdapter: NetworkLayerAdapterProtocol
+        --
+        ~init(networkAdapter:)
+        --
+        +fetch() -> Result<[Character], CharacterListRepositoryError>
+    }
+
+    class "CharacterListEndpoints" as CharacterListEndpoints <<Endpoint>> { 
+        -endpoint: Endpoint
+    }
+
+    class "CharacterListRepositoryError" as CharacterListRepositoryError {
+        case unableToSerializeData
+        case unexpectedError(source: NetworkLayerAdapterError?)
+    }
+
+    class "CharacterDetailRepository" as CharacterDetailRepository <<BaseRepository>> { 
+        -networkAdapter: NetworkLayerAdapterProtocol
+        --
+        ~init(networkAdapter:)
+        --
+        +fetch(id: Int) -> Result<Character, CharacterDetailRepositoryError>
+    }
+
+    class "CharacterDetailEndpoints" as CharacterDetailEndpoints <<Endpoint>> { 
+        -endpoint: Endpoint
+    }
+
+    class "CharacterDetailRepositoryError" as CharacterDetailRepositoryError {
+        case unableToSerializeData
+        case unexpectedError(source: NetworkLayerAdapterError?)
+    }
+
+    BaseRepository-down->CharacterListRepository
+    Endpoint-down->CharacterListEndpoints
+    CharacterListRepository .down.> CharacterListRepositoryError
+    CharacterListRepository .down.> CharacterListEndpoints
+
+    BaseRepository-down->CharacterDetailRepository
+    Endpoint-down->CharacterDetailEndpoints
+    CharacterDetailRepository .down.> CharacterDetailRepositoryError
+    CharacterDetailRepository .down.> CharacterDetailEndpoints
+}
+
+@enduml
