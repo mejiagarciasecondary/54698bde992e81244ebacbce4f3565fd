@@ -27,12 +27,12 @@ final class CharacterListViewModel: CharacterListTableAdapterDataSource {
 
     // MARK: - Dependencies
 
-    private let repository: CharacterListRepository
+    private let repository: CharacterListRepositoryProtocol
 
     // MARK: - Life cycle
 
     init(
-        repository: CharacterListRepository
+        repository: CharacterListRepositoryProtocol
     ) {
         self.repository = repository
     }

@@ -25,11 +25,6 @@ let package = Package(
                 .product(name: "Language", package: "Language")
             ],
             path: "Sources"
-        ),
-        .testTarget(
-            name: "CommonTests",
-            dependencies: ["Common"],
-            path: "Tests"
-        ),
+        )
     ]
 )

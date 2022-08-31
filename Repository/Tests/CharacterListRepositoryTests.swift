@@ -88,7 +88,9 @@ final class CharacterListRepositoryTests: XCTestCase {
                         "thumbnail": {
                             "path": "test_path",
                             "extension": "test_extension"
-                        }
+                        },
+                        "comics": { "available": 0 },
+                        "series": { "available": 1 }
                     }
                 ]
             }
@@ -116,7 +118,7 @@ final class CharacterListRepositoryTests: XCTestCase {
                 XCTAssertEqual(characters.first?.thumbnail?.thumbnailExtension, "test_extension")
 
             case .failure, .none:
-                XCTFail("This test is meant to fail.")
+                XCTFail("This test is meant to succeed.")
         }
     }
 }

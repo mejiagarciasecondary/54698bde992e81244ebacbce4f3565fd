@@ -74,16 +74,17 @@ final class NetworkLayerAdapterTests: XCTestCase {
 
     func test_createURL_withApiKey_shouldCreateExpectedQueryParams() async {
         // Arrange
-        let mockApiKey = "2123345634745723"
-        let mockHash = "ffd275c5130566a2916217b101f26150"
+        let mockPublicKey = "2123345634745723"
+        let mockPrivateKey = "3463746345345"
         let mockUrl = URL(string: "https://google.com")!
 
         // Act
-        NetworkLayerAdapter.configure(apiKey: mockApiKey, hash: mockHash)
+        NetworkLayerAdapter.configure(publicKey: mockPublicKey, privateKey: mockPrivateKey)
         let url = sut?.getUrlWithQueryParameters(url: mockUrl)
 
         // Assert
-        XCTAssertTrue(url?.query?.contains("apiKey=2123345634745723") == true)
-        XCTAssertTrue(url?.query?.contains("hash=ffd275c5130566a2916217b101f26150") == true)
+        XCTAssertTrue(url?.query?.contains("apikey=2123345634745723") == true)
+        XCTAssertTrue(url?.query?.contains("ts=") == true)
+        XCTAssertTrue(url?.query?.contains("hash=") == true)
     }
 }

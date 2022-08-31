@@ -10,11 +10,11 @@ import Repository
 import Networking
 import UIKit
 
-final class CharacterListRouter {
+final class CharacterListRouter: BaseRouter<CharacterListRouter.Routes> {
 
     // MARK: - Router properties
 
-    private let navigationController: UINavigationController
+    private var navigationController: UINavigationController
     private let networkAdapterLayer: NetworkLayerAdapterProtocol
 
     // MARK: - Routes
@@ -35,17 +35,25 @@ final class CharacterListRouter {
 
     // MARK: - Internal Methods
 
-    func routeTo(_ route: Routes) {
+    override func routeTo(_ route: Routes) {
         switch route {
             case .detail(let id, let name):
                 navigationController.pushViewController(
                     CharacterDetailFactory.make(
                         id: id,
                         name: name,
-                        networkLayerAdapter: networkAdapterLayer
+                        networkLayerAdapter: networkAdapterLayer,
+                        router: CharacterDetailRouter(
+                            navigationController: navigationController,
+                            networkAdapterLayer: networkAdapterLayer
+                        )
                     ),
                     animated: true
                 )
         }
+    }
+
+    override func getNavigatorController() -> UINavigationController? {
+        navigationController
     }
 }

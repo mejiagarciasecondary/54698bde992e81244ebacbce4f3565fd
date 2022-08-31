@@ -75,27 +75,15 @@ final class CharacterListViewController: UIViewController {
                     case .loading:
                         self?.activityIndicator?.startAnimating()
 
-                    case .error(message: let message):
+                    case .error(let message):
                         self?.activityIndicator?.stopAnimating()
-                        self?.showErrorMessage(message: message)
+                        self?.router.presentError(message: message)
 
                     case .newDataAvailable:
                         self?.tableView?.reloadData()
                         self?.activityIndicator?.stopAnimating()
                 }
             }.store(in: &cancellables)
-    }
-
-    private func showErrorMessage(message: String) {
-        let alertController = UIAlertController(
-            title: Lang.Errors.title,
-            message: message,
-            preferredStyle: .alert
-        )
-
-        alertController.addAction(UIAlertAction(title: "Ok", style: .default))
-
-        present(alertController, animated: true)
     }
 }
 

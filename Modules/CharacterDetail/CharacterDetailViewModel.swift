@@ -29,13 +29,13 @@ final class CharacterDetailViewModel {
 
     // MARK: - Dependencies
 
-    private let repository: CharacterDetailRepository
+    private let repository: CharacterDetailRepositoryProtocol
 
     // MARK: - Life cycle
 
     init(
         characterId: Int,
-        repository: CharacterDetailRepository
+        repository: CharacterDetailRepositoryProtocol
     ) {
         self.characterId = characterId
         self.repository = repository

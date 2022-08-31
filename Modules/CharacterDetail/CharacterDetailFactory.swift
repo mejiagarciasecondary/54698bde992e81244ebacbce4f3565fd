@@ -13,7 +13,8 @@ struct CharacterDetailFactory {
     static func make(
         id: Int,
         name: String,
-        networkLayerAdapter: NetworkLayerAdapterProtocol
+        networkLayerAdapter: NetworkLayerAdapterProtocol,
+        router: CharacterDetailRouter
     ) -> CharacterDetailViewController {
         CharacterDetailViewController(
             characterName: name,
@@ -22,7 +23,7 @@ struct CharacterDetailFactory {
                 repository: CharacterDetailRepository(
                     networkAdapter: networkLayerAdapter
                 )
-            )
+            ), router: router
         )
     }
 }

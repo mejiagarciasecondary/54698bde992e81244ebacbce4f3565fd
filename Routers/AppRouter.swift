@@ -10,7 +10,11 @@ import Repository
 import Networking
 import UIKit
 
-final class AppRouter {
+//revisar si faltan test
+//revisar cada archivo buscando errores
+//hacer README
+
+final class AppRouter: BaseRouter<AppRouter.Routes> {
 
     // MARK: - Router properties
 
@@ -28,14 +32,14 @@ final class AppRouter {
 
     // MARK: - Router life cycle
 
-    init() {
+    override init() {
         self.navigationController = UINavigationController()
         self.navigationController.navigationBar.prefersLargeTitles = true
     }
 
     // MARK: - Internal Methods
 
-    func routeTo(_ route: Routes) {
+    override func routeTo(_ route: Routes) {
         switch route {
             case .root:
                 navigationController.setViewControllers(
@@ -43,6 +47,10 @@ final class AppRouter {
                     animated: true
                 )
         }
+    }
+
+    override func getNavigatorController() -> UINavigationController? {
+        navigationController
     }
 
     // MARK: - Private Methods

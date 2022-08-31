@@ -34,15 +34,18 @@ final class CharacterDetailViewController: UIViewController {
     private let viewModel: CharacterDetailViewModel
     private var cancellables: Set<AnyCancellable> = []
     private let characterName: String
+    private let router: CharacterDetailRouter
 
     // MARK: - View controller life cycle
 
     init(
         characterName: String,
-        viewModel: CharacterDetailViewModel
+        viewModel: CharacterDetailViewModel,
+        router: CharacterDetailRouter
     ) {
         self.characterName = characterName
         self.viewModel = viewModel
+        self.router = router
 
         super.init(
             nibName: String(describing: Self.self),
@@ -79,9 +82,9 @@ final class CharacterDetailViewController: UIViewController {
                     case .loading:
                         self?.activityIndicator?.startAnimating()
 
-                    case .error(message: let message):
+                    case .error(let message):
                         self?.activityIndicator?.stopAnimating()
-                        self?.showErrorMessage(message: message)
+                        self?.router.presentError(message: message)
 
                     case .newDataAvailable(let presentation):
                         self?.setupPresentation(presentation)
@@ -95,17 +98,5 @@ final class CharacterDetailViewController: UIViewController {
         totalComicsLabel?.text = "\(presentation.totalComics)"
         totalSeriesLabel?.text = "\(presentation.totalSeries)"
         mainImageView?.load(url: presentation.imageUrl)
-    }
-
-    private func showErrorMessage(message: String) {
-        let alertController = UIAlertController(
-            title: Lang.Errors.title,
-            message: message,
-            preferredStyle: .alert
-        )
-
-        alertController.addAction(UIAlertAction(title: "Ok", style: .default))
-
-        present(alertController, animated: true)
     }
 }
