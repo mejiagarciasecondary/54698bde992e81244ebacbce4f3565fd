@@ -12,6 +12,7 @@ import Networking
 @main
 final class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    private var appRouter = AppRouter()
     var window: UIWindow?
 
     func application(
@@ -32,15 +33,9 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 
     private func configureInitialRoute() {
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = UINavigationController(
-            rootViewController: CharacterListViewController(
-                viewModel: CharacterListViewModel(
-                    repository: CharacterListRepository(
-                        networkAdapter: NetworkLayerAdapter()
-                    )
-                )
-            )
-        )
+        window?.rootViewController = appRouter.navigationController
         window?.makeKeyAndVisible()
+
+        appRouter.routeTo(.root)
     }
 }

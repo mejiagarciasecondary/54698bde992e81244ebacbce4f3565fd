@@ -26,6 +26,10 @@
 		9776289E28BE4F9C003CD1ED /* CharacterListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9776289D28BE4F9C003CD1ED /* CharacterListViewModel.swift */; };
 		97BC399028BEB97C005DE658 /* ApiCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BC398F28BEB964005DE658 /* ApiCredentials.swift */; };
 		97BC399228BF0055005DE658 /* CharacterDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BC399128BF0055005DE658 /* CharacterDetailViewModel.swift */; };
+		97BC399528BF0E86005DE658 /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BC399428BF0E86005DE658 /* AppRouter.swift */; };
+		97BC399728BF1075005DE658 /* CharacterListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BC399628BF1075005DE658 /* CharacterListRouter.swift */; };
+		97BC399A28BF10F4005DE658 /* CharacterDetailFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BC399928BF10F4005DE658 /* CharacterDetailFactory.swift */; };
+		97BC399C28BF120D005DE658 /* CharacterListFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BC399B28BF120D005DE658 /* CharacterListFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +62,10 @@
 		97BC398E28BEB7AB005DE658 /* Default.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Default.xcconfig; sourceTree = "<group>"; };
 		97BC398F28BEB964005DE658 /* ApiCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiCredentials.swift; sourceTree = "<group>"; };
 		97BC399128BF0055005DE658 /* CharacterDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailViewModel.swift; sourceTree = "<group>"; };
+		97BC399428BF0E86005DE658 /* AppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
+		97BC399628BF1075005DE658 /* CharacterListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListRouter.swift; sourceTree = "<group>"; };
+		97BC399928BF10F4005DE658 /* CharacterDetailFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailFactory.swift; sourceTree = "<group>"; };
+		97BC399B28BF120D005DE658 /* CharacterListFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +93,7 @@
 		97448EBD28BD9492002CCEC0 = {
 			isa = PBXGroup;
 			children = (
+				97BC399328BF0E47005DE658 /* Routers */,
 				97448EFB28BD958E002CCEC0 /* Config */,
 				97448EFA28BD9576002CCEC0 /* Modules */,
 				97448ED228BD9494002CCEC0 /* Assets.xcassets */,
@@ -139,6 +148,7 @@
 				9776289A28BE4E5B003CD1ED /* CharacterCell */,
 				9776289328BE4DA4003CD1ED /* Views */,
 				9776289828BE4E56003CD1ED /* CharacterListTableAdapter.swift */,
+				97BC399B28BF120D005DE658 /* CharacterListFactory.swift */,
 			);
 			path = CharacterList;
 			sourceTree = "<group>";
@@ -146,6 +156,7 @@
 		97448EFD28BD95FA002CCEC0 /* CharacterDetail */ = {
 			isa = PBXGroup;
 			children = (
+				97BC399928BF10F4005DE658 /* CharacterDetailFactory.swift */,
 				97448F0228BD9621002CCEC0 /* CharacterDetailViewController.swift */,
 				97448F0328BD9621002CCEC0 /* CharacterDetailViewController.xib */,
 				97BC399128BF0055005DE658 /* CharacterDetailViewModel.swift */,
@@ -177,6 +188,15 @@
 				9776289B28BE4E6C003CD1ED /* CharacterCellViewModel.swift */,
 			);
 			path = CharacterCell;
+			sourceTree = "<group>";
+		};
+		97BC399328BF0E47005DE658 /* Routers */ = {
+			isa = PBXGroup;
+			children = (
+				97BC399428BF0E86005DE658 /* AppRouter.swift */,
+				97BC399628BF1075005DE658 /* CharacterListRouter.swift */,
+			);
+			path = Routers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -289,13 +309,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				9776289928BE4E56003CD1ED /* CharacterListTableAdapter.swift in Sources */,
+				97BC399C28BF120D005DE658 /* CharacterListFactory.swift in Sources */,
 				97448F0028BD960D002CCEC0 /* CharacterListViewController.swift in Sources */,
+				97BC399A28BF10F4005DE658 /* CharacterDetailFactory.swift in Sources */,
 				97448F0428BD9621002CCEC0 /* CharacterDetailViewController.swift in Sources */,
+				97BC399728BF1075005DE658 /* CharacterListRouter.swift in Sources */,
 				9776289E28BE4F9C003CD1ED /* CharacterListViewModel.swift in Sources */,
 				97448ECA28BD9492002CCEC0 /* AppDelegate.swift in Sources */,
 				9776289C28BE4E6C003CD1ED /* CharacterCellViewModel.swift in Sources */,
 				97BC399228BF0055005DE658 /* CharacterDetailViewModel.swift in Sources */,
 				9776289628BE4DBB003CD1ED /* CharacterTableViewCell.swift in Sources */,
+				97BC399528BF0E86005DE658 /* AppRouter.swift in Sources */,
 				97BC399028BEB97C005DE658 /* ApiCredentials.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

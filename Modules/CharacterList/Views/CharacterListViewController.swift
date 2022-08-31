@@ -22,14 +22,17 @@ final class CharacterListViewController: UIViewController {
 
     private var tableAdapter: CharacterListTableAdapter?
     private let viewModel: CharacterListViewModel
+    private let router: CharacterListRouter
     private var cancellables: Set<AnyCancellable> = []
 
     // MARK: - View controller life cycle
 
     init(
-        viewModel: CharacterListViewModel
+        viewModel: CharacterListViewModel,
+        router: CharacterListRouter
     ) {
         self.viewModel = viewModel
+        self.router = router
 
         super.init(
             nibName: String(describing: Self.self),
@@ -52,7 +55,6 @@ final class CharacterListViewController: UIViewController {
 
     private func setupUI() {
         title = Lang.Views.characterList
-        navigationController?.navigationBar.prefersLargeTitles = true
 
         tableAdapter = CharacterListTableAdapter(
             dataSource: viewModel,
@@ -100,17 +102,11 @@ final class CharacterListViewController: UIViewController {
 // MARK: - CharacterCellDelegate
 extension CharacterListViewController: CharacterCellDelegate {
     func characterCellSelected(viewModel: CharacterCellViewModel) {
-        navigationController?.pushViewController(
-            CharacterDetailViewController(
-                characterName: viewModel.name!,
-                viewModel: CharacterDetailViewModel(
-                    characterId: viewModel.id!, // FIX THIS
-                    repository: CharacterDetailRepository(
-                        networkAdapter: NetworkLayerAdapter()
-                    )
-                )
-            ),
-            animated: true
-        )
+        guard let characterName = viewModel.name,
+              let characterId = viewModel.id else {
+            return
+        }
+
+        router.routeTo(.detail(id: characterId, name: characterName))
     }
 }
