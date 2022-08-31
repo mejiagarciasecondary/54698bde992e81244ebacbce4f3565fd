@@ -25,6 +25,7 @@
 		9776289C28BE4E6C003CD1ED /* CharacterCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9776289B28BE4E6C003CD1ED /* CharacterCellViewModel.swift */; };
 		9776289E28BE4F9C003CD1ED /* CharacterListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9776289D28BE4F9C003CD1ED /* CharacterListViewModel.swift */; };
 		97BC399028BEB97C005DE658 /* ApiCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BC398F28BEB964005DE658 /* ApiCredentials.swift */; };
+		97BC399228BF0055005DE658 /* CharacterDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BC399128BF0055005DE658 /* CharacterDetailViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		9776289D28BE4F9C003CD1ED /* CharacterListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListViewModel.swift; sourceTree = "<group>"; };
 		97BC398E28BEB7AB005DE658 /* Default.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Default.xcconfig; sourceTree = "<group>"; };
 		97BC398F28BEB964005DE658 /* ApiCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiCredentials.swift; sourceTree = "<group>"; };
+		97BC399128BF0055005DE658 /* CharacterDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +148,7 @@
 			children = (
 				97448F0228BD9621002CCEC0 /* CharacterDetailViewController.swift */,
 				97448F0328BD9621002CCEC0 /* CharacterDetailViewController.xib */,
+				97BC399128BF0055005DE658 /* CharacterDetailViewModel.swift */,
 			);
 			path = CharacterDetail;
 			sourceTree = "<group>";
@@ -291,6 +294,7 @@
 				9776289E28BE4F9C003CD1ED /* CharacterListViewModel.swift in Sources */,
 				97448ECA28BD9492002CCEC0 /* AppDelegate.swift in Sources */,
 				9776289C28BE4E6C003CD1ED /* CharacterCellViewModel.swift in Sources */,
+				97BC399228BF0055005DE658 /* CharacterDetailViewModel.swift in Sources */,
 				9776289628BE4DBB003CD1ED /* CharacterTableViewCell.swift in Sources */,
 				97BC399028BEB97C005DE658 /* ApiCredentials.swift in Sources */,
 			);

@@ -7,7 +7,7 @@
 
 import Foundation
 
-class BaseRepository {
+public class BaseRepository {
     func getSerializedData<T: Decodable>(data: Data) -> T? {
         return try? JSONDecoder().decode(T.self, from: data)
     }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Common
 
 final class CharacterTableViewCell: UITableViewCell {
 
@@ -18,6 +19,7 @@ final class CharacterTableViewCell: UITableViewCell {
     // MARK: - Properties
 
     private var viewModel: CharacterCellViewModel?
+    private var imageDownloadTask: URLSessionDataTask?
 
     // MARK: - Cell life cycle
 
@@ -31,7 +33,7 @@ final class CharacterTableViewCell: UITableViewCell {
         viewModel = nil
         nameLabel?.text = nil
         mainImageView?.image = nil
-        viewModel?.cancelDownload()
+        imageDownloadTask?.cancel()
         activityIndicator?.startAnimating()
     }
 
@@ -46,11 +48,7 @@ final class CharacterTableViewCell: UITableViewCell {
 
         nameLabel?.text = viewModel.name
 
-        self.viewModel?.downloadImage { image in
-            DispatchQueue.main.async { [weak self] in
-                self?.mainImageView?.image = image
-                self?.activityIndicator?.stopAnimating()
-            }
-        }
+        imageDownloadTask = mainImageView?.load(url: viewModel.imageUrlString)
+        activityIndicator?.stopAnimating()
     }
 }

@@ -8,6 +8,8 @@
 import UIKit
 import Language
 import Combine
+import Repository
+import Networking
 
 final class CharacterListViewController: UIViewController {
 
@@ -50,6 +52,7 @@ final class CharacterListViewController: UIViewController {
 
     private func setupUI() {
         title = Lang.Views.characterList
+        navigationController?.navigationBar.prefersLargeTitles = true
 
         tableAdapter = CharacterListTableAdapter(
             dataSource: viewModel,
@@ -97,6 +100,17 @@ final class CharacterListViewController: UIViewController {
 // MARK: - CharacterCellDelegate
 extension CharacterListViewController: CharacterCellDelegate {
     func characterCellSelected(viewModel: CharacterCellViewModel) {
-        print(viewModel.id)
+        navigationController?.pushViewController(
+            CharacterDetailViewController(
+                characterName: viewModel.name!,
+                viewModel: CharacterDetailViewModel(
+                    characterId: viewModel.id!, // FIX THIS
+                    repository: CharacterDetailRepository(
+                        networkAdapter: NetworkLayerAdapter()
+                    )
+                )
+            ),
+            animated: true
+        )
     }
 }

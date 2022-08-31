@@ -15,11 +15,15 @@ let package = Package(
             targets: ["Common"]
         ),
     ],
-    dependencies: [],
+    dependencies: [
+        .package(path: "../Language")
+    ],
     targets: [
         .target(
             name: "Common",
-            dependencies: [],
+            dependencies: [
+                .product(name: "Language", package: "Language")
+            ],
             path: "Sources"
         ),
         .testTarget(

@@ -8,7 +8,7 @@
 import Foundation
 import Networking
 
-final class CharacterListRepository: BaseRepository {
+public final class CharacterListRepository: BaseRepository {
 
     // MARK: - Dependencies
 

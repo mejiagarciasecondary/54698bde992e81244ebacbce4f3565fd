@@ -9,19 +9,21 @@ import Foundation
 import Repository
 import Combine
 
-enum CharacterListViewModelState {
-    case idle
-    case loading
-    case error(message: String)
-    case newDataAvailable
-}
-
 final class CharacterListViewModel: CharacterListTableAdapterDataSource {
 
     // MARK: - Properties
 
-    @Published var state: CharacterListViewModelState = .idle
+    @Published var state: State = .idle
     private(set) var rows = [CharacterCellViewModel]()
+
+    // MARK: - State
+
+    enum State {
+        case idle
+        case loading
+        case error(message: String)
+        case newDataAvailable
+    }
 
     // MARK: - Dependencies
 
